@@ -1,0 +1,31 @@
+---
+- name: Install PHP and required modules
+  apt:
+    name:
+      - php
+      - libapache2-mod-php
+      - php-mysql
+    state: present
+
+- name: Download WordPress
+  get_url:
+    url: https://wordpress.org/latest.tar.gz
+    dest: /tmp/latest.tar.gz
+
+- name: Extract WordPress
+  unarchive:
+    src: /tmp/latest.tar.gz
+    dest: /var/www/
+    copy: no
+
+- name: Set permissions for WordPress files
+  file:
+    path: /var/www/wordpress
+    owner: www-data
+    group: www-data
+    recurse: yes
+
+- name: Configure WordPress wp-config.php
+  template:
+    src: wp-config.php.j2
+    dest: /var/www/wordpress/wp-config.php
