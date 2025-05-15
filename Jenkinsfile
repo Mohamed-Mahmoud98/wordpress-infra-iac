@@ -9,7 +9,9 @@ pipeline {
     stages {
         stage('Clone Repo') {
             steps {
-                git url: 'https://github.com/your-username/your-repo.git', branch: 'main'
+                withCredentials([string(credentialsId: 'github-pat', variable: 'GITHUB_TOKEN')]) {
+                    git url: "https://${GITHUB_TOKEN}@github.com/Mohamed-Mahmoud98/wordpress-infra-iac.git", branch: 'main'
+                }
             }
         }
 
