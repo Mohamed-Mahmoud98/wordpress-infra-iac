@@ -2,9 +2,6 @@
 provider "aws" {
   alias  = "virginia"
   region = var.region_virginia
-  access_key = ""
-  secret_key = ""
-  token = ""
 }
 
 
