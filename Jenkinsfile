@@ -23,13 +23,6 @@ pipeline {
             }
         }
 
-        stage('Terraform Plan') {
-            steps {
-                dir('terraform') {
-                    sh 'terraform plan'
-                }
-            }
-        }
 
         stage('Terraform Apply') {
             steps {
